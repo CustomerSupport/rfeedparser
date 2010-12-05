@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+
+require 'addressable/uri'
+require 'nokogiri'
+
 module FeedParserUtilities
   def stripDoctype(data)
     #Strips DOCTYPE from XML document, returns (rss_version, stripped_data)
@@ -53,14 +57,17 @@ module FeedParserUtilities
       ['q','cite'],
       ['script','src'],
     ]
-    h = Hpricot(htmlSource)
+
+    h = Nokogiri::HTML::DocumentFragment.parse(htmlSource)
     relative_uris.each do |l|
       ename, eattr = l
       h.search(ename).each do |elem|
-        euri = elem.attributes[eattr]
-        uri = Addressable::URI.parse(Addressable::URI.encode(euri)) rescue nil
-        if euri and not euri.empty? and uri and uri.relative?
-          elem.raw_attributes[eattr] = urljoin(baseURI, euri)
+        if elem.attributes.has_key? eattr
+          euri = elem.attributes[eattr].value
+          uri = Addressable::URI.parse(Addressable::URI.encode(euri)) rescue nil
+          if euri and not euri.empty? and uri and uri.relative?
+            elem.set_attribute(eattr, urljoin(baseURI, euri))
+          end
         end
       end
     end

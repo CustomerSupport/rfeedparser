@@ -382,6 +382,7 @@ module FeedParserMixin
     end
     return output if ! expectingText
 
+
     # decode base64 content
     if @contentparams['base64']
       out64 = Base64::decode64(output) # a.k.a. [output].unpack('m')[0]
@@ -410,12 +411,14 @@ module FeedParserMixin
         output = FeedParser.resolveRelativeURIs(output, @baseuri, @encoding)
       end
     end
+
     # sanitize embedded markup
     if @html_types.include?(mapContentType(@contentparams['type'] || 'text/html'))
       if @can_contain_dangerous_markup.include?(element)
         output = FeedParser.sanitizeHTML(output, @encoding)
       end
     end
+
 
     if @encoding && ! @encoding.empty? && @encoding != 'utf-8'
       output = uconvert(output, @encoding, 'utf-8')
@@ -428,6 +431,7 @@ module FeedParserMixin
     return output if element == 'title' && @has_title
 
     # store output in appropriate place(s)
+
     if @inentry && ! @insource
       if element == 'content'
         @entries[-1][element] ||= []
