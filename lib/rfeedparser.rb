@@ -65,7 +65,7 @@ require 'rfeedparser/monkey_patches'
 module FeedParser
   extend FeedParserUtilities
   
-  VERSION = "0.9.960"
+  VERSION = "0.9.961"
 
   AUTHOR = "Mark Pilgrim <http://diveintomark.org/>"
   PORTER = "Jeff Hodges <http://somethingsimilar.com>"
