@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
 
   # Dependencies
   s.add_dependency('nokogiri', '~>1.4')
-  s.add_dependency('character-encodings', '>= 0.2.0')
+  # s.add_dependency('character-encodings', '>= 0.2.0')
   s.add_dependency('htmltools', '>= 1.10')
   s.add_dependency('htmlentities', '4.0.0')
   s.add_dependency('mongrel', '>=1.0.2')
