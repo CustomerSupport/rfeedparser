@@ -33,7 +33,6 @@ Gem::Specification.new do |s|
   s.rubyforge_project = 'rfeedparser'
 
   # Dependencies
-  s.add_dependency('hpricot', '~>0.8')
   s.add_dependency('nokogiri', '~>1.4')
   s.add_dependency('character-encodings', '>= 0.2.0')
   s.add_dependency('htmltools', '>= 1.10')
