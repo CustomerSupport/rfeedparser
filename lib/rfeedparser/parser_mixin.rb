@@ -1105,7 +1105,7 @@ module FeedParserMixin
       context = getContext()
       if @intextinput
         context['textinput']['description'] = value
-      elsif @inimage:
+      elsif @inimage
         context['image']['description'] = value
       end
     end
@@ -1174,7 +1174,7 @@ module FeedParserMixin
   alias :_start_itunes_summary :_start_summary
 
   def _end_summary
-    if @summaryKey == 'content':
+    if @summaryKey == 'content'
       _end_content()
     else
       popContent(@summaryKey || 'summary')
@@ -1212,7 +1212,7 @@ module FeedParserMixin
   def _start_content(attrsD)
     pushContent('content', attrsD, 'text/plain', true)
     src = attrsD['src']
-    if src && ! src.empty?:
+    if src && ! src.empty?
       @contentparams['src'] = src
     end
     push('content', true)
