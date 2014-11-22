@@ -992,7 +992,7 @@ module FeedParserMixin
     return if value.nil? || value.empty?
     context = getContext()
     tags = context['tags']
-    if value && ! value.empty? && ! tags.empty? && ! tags[-1]['term']:
+    if value && ! value.empty? && ! tags.empty? && ! tags[-1]['term']
       tags[-1]['term'] = value
     else
       addTag(value, nil, nil)
