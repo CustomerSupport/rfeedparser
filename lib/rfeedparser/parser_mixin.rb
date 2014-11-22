@@ -1051,7 +1051,7 @@ module FeedParserMixin
   def _end_guid
     value = pop('id')
     _save('guidislink', (@guidislink && ! getContext().has_key?('link')))
-    if @guidislink:
+    if @guidislink
       # guid acts as link, but only if 'ispermalink' is not present or is 'true',
       # and only if the item doesn't already have a link element
       _save('link', value)
