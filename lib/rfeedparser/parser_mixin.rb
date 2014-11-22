@@ -152,7 +152,7 @@ module FeedParserMixin
     attrsd.each do |prefix, uri|
       if /^xmlns:/ =~ prefix # prefix begins with xmlns:
         trackNamespace(prefix[6..-1], uri)
-      elsif prefix == 'xmlns':
+      elsif prefix == 'xmlns'
         trackNamespace(nil, uri)
       end
     end
