@@ -9,7 +9,6 @@
 #
 # Required: Ruby 1.8
 
-$KCODE = 'UTF8'
 require 'stringio'
 require 'uri'
 require 'open-uri'
