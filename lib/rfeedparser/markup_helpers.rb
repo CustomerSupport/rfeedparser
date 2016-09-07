@@ -9,8 +9,8 @@ module FeedParserUtilities
     #rss_version may be 'rss091n' or None
     #stripped_data is the same XML document, minus the DOCTYPE
     entity_pattern = /<!ENTITY(.*?)>/m # m is for Regexp::MULTILINE
-    
-    data = data.gsub(entity_pattern,'')
+
+    data = data.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').gsub(entity_pattern,'')
 
     doctype_pattern = /<!DOCTYPE(.*?)>/m
     doctype_results = data.scan(doctype_pattern)
@@ -28,7 +28,7 @@ module FeedParserUtilities
     data = data.sub(doctype_pattern, '')
     return version, data
   end
-  
+
   def resolveRelativeURIs(htmlSource, baseURI, encoding)
     $stderr << "entering resolveRelativeURIs\n" if $debug # FIXME write a decent logger
     relative_uris = [ ['a','href'],
